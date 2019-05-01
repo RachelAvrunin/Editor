@@ -5,9 +5,7 @@
 using namespace std;
 
 Editor::Editor(){
-    currLine=-1;
-    loop();
-        
+    currLine=-1;        
 }
 
 void Editor::loop(){
@@ -29,7 +27,7 @@ void Editor::loop(){
         else if (isNumber(str)){ // makes line #str the current line  
             int i= atoi(str.c_str());       
             if(i>d.numOfLines() || i<=0)
-                cout<<"illegal line number!";
+                cout<<"illegal line number!\n";
             else{
                 currLine=i-1;
                 d.printCurr(currLine);
@@ -65,7 +63,7 @@ void Editor::loop(){
             d.changeCurr(currLine,s);
             getline(cin, s);
             if(s!=".")
-                cout<<"eror!";
+                cout<<"illegal choise!\n";
         }
         else if (str=="d"){ // deletes the current line
             d.deleleCurr(currLine);
@@ -104,7 +102,7 @@ void Editor::loop(){
         }            
     }
 }
-bool Editor::isNumber(const string& s)
-{
+
+bool Editor::isNumber(const string & s) const{
     return !s.empty() && find_if(s.begin(), s.end(), [](char c) { return !isdigit(c); }) == s.end();
 }

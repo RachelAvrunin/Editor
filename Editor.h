@@ -5,12 +5,12 @@ class Editor{
 
 public:
     Editor();
-    Document d;
     void loop();
 
 private:
+    Document d;
     int currLine;
-    bool isNumber(const string& s);
+    bool isNumber(const string & s) const;
 
 
 

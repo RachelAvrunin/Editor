@@ -1,24 +1,24 @@
 #include "Document.h"
+
 using namespace std;
 
-
-Document::Document(){      
-
+Document::Document(){
 }
+
 int Document::numOfLines(){
     return myDoc.size();
 }
 
-void Document::printCurr(int i){
+void Document::printCurr(const int line) const{
     if(myDoc.empty())
         cout<<"Document is empty!\n";
-    else if(i<=myDoc.size())
-        cout<<myDoc.at(i)<<"\n";
+    else if(line<=myDoc.size())
+        cout<<myDoc.at(line)<<"\n";
     else
-       cout<<"Eror in line number: "<<i<<"!\n";
+       cout<<"Eror in line number: "<<line<<"!\n";
 }
 
-void Document::printAll(){
+void Document::printAll() const{
     for(int i=0; i<myDoc.size(); i++)
         printCurr(i);
 
@@ -26,16 +26,15 @@ void Document::printAll(){
         cout<<"Document is empty!\n";
 }
 
-void Document::insertInto(int line , const string & s){
+void Document::insertInto(const int line , const string & s){
     myDoc.insert(myDoc.begin() + line , s);
-
 }
 
-void Document::changeCurr(int line, const string & s){
+void Document::changeCurr(const int line, const string & s){
     myDoc.at(line)=s;
 }
 
-int Document::serch(int line, const string & s){
+int Document::serch(const int line, const string & s) const{
     for (int i=line; i<myDoc.size() ; i++){
         if(checkSubString(myDoc.at(i),s)){
             return i;   
@@ -49,11 +48,11 @@ int Document::serch(int line, const string & s){
 
 }
 
-void Document::deleleCurr(int line){
+void Document::deleleCurr(const int line){
     myDoc.erase(myDoc.begin() + line);
 }
 
-void Document::replace (int line,const string & oldString, const string & newString){
+void Document::replace(const int line,const string & oldString, const string & newString){
     string s=myDoc.at(line); 
     if(checkSubString(s,oldString)){
         int i=s.find(oldString);
@@ -65,10 +64,9 @@ void Document::replace (int line,const string & oldString, const string & newStr
     }
 }
 
-bool Document::checkSubString(const string & myString, const string & subString){
+bool Document::checkSubString(const string & myString, const string & subString) const{
     if(myString.find(subString)!= string::npos)
         return true;
     else
         return false;
 }
-

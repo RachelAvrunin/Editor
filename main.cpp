@@ -1,5 +1,6 @@
 #include "Editor.h"
 
 int main(){
-    Editor edd{};
+    Editor editor;
+    editor.loop();
 }
